@@ -1,9 +1,15 @@
 import requests
 
+# Kullanıcıdan proxy tipini al
+proxy_type = input("Proxy tipini seçin (http/https/socks4/socks5): ")
+
+# Kullanıcıdan proxy tipini al
+ip_version = input("IP versionunu seçin (ipv4/ipv6): ")
+
 # Proxy listesini al
 proxy_list = []
 try:
-    response = requests.get("https://api.proxyscrape.com/?request=displayproxies&proxytype=http")
+    response = requests.get(f"https://api.proxyscrape.com/?request=displayproxies&proxytype={proxy_type}&protocol={ip_version}")
     proxy_list = response.text.split('\r\n')
 except:
     print("Proxy listesi alınamadı")
